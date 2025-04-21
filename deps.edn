@@ -1,0 +1,19 @@
+{:paths   ["src"]
+ :deps    {org.clojure/clojure            {:mvn/version "1.12.0-alpha5"}
+           
+           ; Interleaved logging
+           com.taoensso/timbre            {:mvn/version "6.7.0-alpha1"}
+           
+           ; Modex dependency
+           theronic/modex                 {:git/url "https://github.com/theronic/modex"
+                                           :git/sha "1b3faf910276c4e056a65c5572f3d9d159bb69c0"}}
+ 
+ :aliases {:dev   {}
+           :build {:extra-paths ["src-build"]
+                   :deps       {io.github.clojure/tools.build {:git/tag "v0.9.6" :git/sha "8e78bcc"}}
+                   :ns-default build}
+           :test  {:extra-paths ["test"]
+                   :extra-deps  {io.github.cognitect-labs/test-runner
+                                 {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+                   :main-opts   ["-m" "cognitect.test-runner"]
+                   :exec-fn     cognitect.test-runner.api/test}}}
